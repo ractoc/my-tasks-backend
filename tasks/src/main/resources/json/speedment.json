@@ -1,0 +1,129 @@
+{
+  "config" : {
+    "speedmentVersion" : "Speedment:3.1.15",
+    "companyName" : "ractoc.com",
+    "appId" : "0b0e63ab-6d51-4c7c-8ee7-a6e1fb8e444d",
+    "name" : "tasks",
+    "packageLocation" : "target/generated-sources/java",
+    "packageName" : "com.ractoc.mytasksbackend.tasks.db",
+    "id" : "tasks",
+    "enabled" : true,
+    "dbmses" : [
+      {
+        "port" : 9876,
+        "schemas" : [
+          {
+            "tables" : [
+              {
+                "primaryKeyColumns" : [
+                  {
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "unique" : true,
+                    "name" : "name_UNIQUE",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "name" : "name",
+                        "id" : "name",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "name_UNIQUE"
+                  },
+                  {
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "name" : "id",
+                        "id" : "id",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "PRIMARY"
+                  }
+                ],
+                "isView" : false,
+                "columns" : [
+                  {
+                    "databaseType" : "java.lang.String",
+                    "nullable" : false,
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "nullable" : false,
+                    "name" : "name",
+                    "id" : "name",
+                    "ordinalPosition" : 2
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "nullable" : true,
+                    "name" : "description",
+                    "id" : "description",
+                    "ordinalPosition" : 3
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "nullable" : false,
+                    "name" : "status",
+                    "id" : "status",
+                    "ordinalPosition" : 4
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "nullable" : false,
+                    "name" : "created_by",
+                    "id" : "created_by",
+                    "ordinalPosition" : 5
+                  },
+                  {
+                    "databaseType" : "java.sql.Timestamp",
+                    "nullable" : false,
+                    "name" : "creation_date",
+                    "id" : "creation_date",
+                    "ordinalPosition" : 6
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "nullable" : true,
+                    "name" : "updated_by",
+                    "id" : "updated_by",
+                    "ordinalPosition" : 7
+                  },
+                  {
+                    "databaseType" : "java.sql.Timestamp",
+                    "nullable" : true,
+                    "name" : "update_date",
+                    "id" : "update_date",
+                    "ordinalPosition" : 8
+                  }
+                ],
+                "name" : "task",
+                "id" : "task"
+              }
+            ],
+            "name" : "my_tasks",
+            "id" : "my_tasks",
+            "enabled" : true
+          }
+        ],
+        "name" : "tasks",
+        "typeName" : "MySQL",
+        "id" : "tasks",
+        "enabled" : true,
+        "username" : "mytasks"
+      }
+    ]
+  }
+}

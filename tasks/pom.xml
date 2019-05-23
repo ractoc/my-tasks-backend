@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>parent</artifactId>
+        <groupId>com.ractoc.mytasksbackend</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>tasks</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>common</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.speedment</groupId>
+                <artifactId>speedment-maven-plugin</artifactId>
+                <version>${speedment.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.42</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <dbmsPassword>MyTasks</dbmsPassword>
+                    <configFile>${project.basedir}/src/main/resources/json/speedment.json</configFile>
+                    <packageLocation>target/generated-sources/java</packageLocation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>Generate code for Mysql</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>spring-boot</classifier>
+                            <mainClass>
+                               ${project.groupId}.${project.artifactId}.App
+                            </mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>reload-speedment-json</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.speedment</groupId>
+                        <artifactId>speedment-maven-plugin</artifactId>
+                        <version>${speedment.version}</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>5.1.40</version>
+                            </dependency>
+                        </dependencies>
+                        <configuration>
+                            <dbmsUsername>mytasks</dbmsUsername>
+                            <dbmsPassword>MyTasks</dbmsPassword>
+                            <dbmsPort>9876</dbmsPort>
+                            <dbmsSchemas>my_tasks</dbmsSchemas>
+                            <companyName>ractoc.com</companyName>
+                            <configFile>${project.basedir}/src/main/resources/json/speedment.json</configFile>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>re-initialize</id>
+                                <goals>
+                                    <goal>init</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>update json for Mysql</id>
+                                <goals>
+                                    <goal>reload</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+
+</project>
