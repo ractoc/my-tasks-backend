@@ -51,8 +51,8 @@ public abstract class SpeedmentDBTestCase {
      * <p>
      * This method should be called from the @BeforeAll method in the actual testcase.
      *
-     * @param dbName         The name of the database instance. This needs to be the same as the name in the speedment.json file.
-     * @param portNumber     The port number on which to connect to the database. This needs to be the same as the name in the speedment.json file.
+     * @param dbName         The title of the database instance. This needs to be the same as the title in the speedment.json file.
+     * @param portNumber     The port number on which to connect to the database. This needs to be the same as the title in the speedment.json file.
      * @param schemaScript   The script containing the SQL to setup the database.
      * @param initialDataset The initial dataset to load at the start of each testcase.
      * @throws ManagedProcessException An indication something went wrong while creating the database.

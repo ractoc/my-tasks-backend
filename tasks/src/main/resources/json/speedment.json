@@ -2,7 +2,7 @@
   "config" : {
     "speedmentVersion" : "Speedment:3.1.15",
     "companyName" : "ractoc.com",
-    "appId" : "0b0e63ab-6d51-4c7c-8ee7-a6e1fb8e444d",
+    "appId" : "8bb38238-df55-4201-8544-efe66acfc574",
     "name" : "tasks",
     "packageLocation" : "target/generated-sources/java",
     "packageName" : "com.ractoc.mytasksbackend.tasks.db",

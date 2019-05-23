@@ -17,11 +17,15 @@ public class TaskHandler {
         this.taskService = taskService;
     }
 
-    public List<ListModel> getRaceList() {
+    List<ListModel> getRaceList() {
         return taskService.getAllTasks().map(TaskConverter::taskToListModel).collect(Collectors.toList());
     }
 
-    public TaskModel getTaskById(String uuid) {
+    TaskModel getTaskById(String uuid) {
         return TaskConverter.convertToTaskModel(taskService.getTask(uuid));
+    }
+
+    TaskModel saveTask(TaskModel task) {
+        return TaskConverter.convertToTaskModel(taskService.saveTask(TaskConverter.convertToTask(task)));
     }
 }
