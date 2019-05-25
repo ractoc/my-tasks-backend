@@ -1,7 +1,5 @@
 package com.ractoc.mytasksbackend.tasks;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -12,6 +10,8 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.util.function.Predicate;
+
 @Configuration
 @EnableSwagger2
 public class SwaggerConfiguration {
@@ -21,7 +21,7 @@ public class SwaggerConfiguration {
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.ractoc.mytasksbackend"))
-                .paths(paths())
+                .paths(testPaths()::test)
                 .build();
     }
 
@@ -30,16 +30,17 @@ public class SwaggerConfiguration {
         return new ApiInfoBuilder()
                 .title("My-Tasks Tasks Rest APIs")
                 .description("This page lists all the rest apis for My-Tasks Tasks endpoint.")
-                .version("1.0-SNAPSHOT")
+                .version("1.0.0")
                 .build();
     }
 
     // Only select apis that matches the given Predicates.
-    private Predicate<String> paths() {
-// Match all paths except /error
-        return Predicates.and(
-                PathSelectors.regex("/task.*"),
-                Predicates.not(PathSelectors.regex("/error.*")))
-                ;
+    private Predicate<String> testPaths() {
+// Match all testPaths except /error
+        return testPath("/task.*").and((testPath("/error.*")).negate());
+    }
+
+    private Predicate<String> testPath(String s) {
+        return PathSelectors.regex(s)::apply;
     }
 }

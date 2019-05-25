@@ -21,11 +21,11 @@ package com.ractoc.mytasksbackend.common.configuration;
 
 import ch.vorburger.exec.ManagedProcessException;
 
-public class UnableToInitializeDatabaseException extends RuntimeException {
+class UnableToInitializeDatabaseException extends RuntimeException {
 
 	private static final long serialVersionUID = -270096547353636378L;
 
-	public UnableToInitializeDatabaseException(ManagedProcessException e) {
+	UnableToInitializeDatabaseException(ManagedProcessException e) {
 		super(e);
 	}
 

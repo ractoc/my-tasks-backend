@@ -5,6 +5,8 @@ import com.ractoc.mytasksbackend.tasks.db.TasksApplicationBuilder;
 import com.ractoc.mytasksbackend.tasks.db.tasks.my_tasks.task.TaskManager;
 import com.speedment.runtime.core.component.transaction.TransactionComponent;
 import com.speedment.runtime.core.component.transaction.TransactionHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +14,9 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 @Configuration
 public class SpeedmentConfiguration {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SpeedmentConfiguration.class);
+
     @Value("${dbms.host}")
     private String host;
     @Value("${dbms.port}")
@@ -32,12 +37,12 @@ public class SpeedmentConfiguration {
     @Bean
     public TasksApplication getLanguageApplication() {
         if (debug) {
-            System.out.println("connection parameters");
-            System.out.println("host: " + host);
-            System.out.println("port: " + port);
-            System.out.println("schema: " + schema);
-            System.out.println("collation: " + collation);
-            System.out.println("collationBinary: " + collationBinary);
+            LOGGER.debug("connection parameters");
+            LOGGER.debug("host: {}", host);
+            LOGGER.debug("port: {}", port);
+            LOGGER.debug("schema: {}", schema);
+            LOGGER.debug("collation: {}", collation);
+            LOGGER.debug("collationBinary: {}", collationBinary);
             return new TasksApplicationBuilder()
                     .withIpAddress(host)
                     .withPort(port)

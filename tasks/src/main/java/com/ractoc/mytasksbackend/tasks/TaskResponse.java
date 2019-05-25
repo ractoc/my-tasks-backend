@@ -12,17 +12,17 @@ import org.springframework.http.HttpStatus;
 @Setter
 @NoArgsConstructor
 @ApiModel(value = "TaskResponse Model", description = "Contains the response containing a single task")
-public class TaskResponse extends BaseResponse {
+class TaskResponse extends BaseResponse {
 
     @ApiModelProperty(value = "The task.")
     private TaskModel task;
 
-    public TaskResponse(HttpStatus httpStatus, TaskModel task) {
+    TaskResponse(HttpStatus httpStatus, TaskModel task) {
         setResponseCode(httpStatus.value());
         this.task = task;
     }
 
-    public TaskResponse(HttpStatus httpStatus, String message) {
+    TaskResponse(HttpStatus httpStatus, String message) {
         setResponseCode(httpStatus.value());
         setMessage(message);
     }

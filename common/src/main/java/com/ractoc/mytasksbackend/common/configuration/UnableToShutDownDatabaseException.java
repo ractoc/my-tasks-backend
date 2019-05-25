@@ -21,11 +21,11 @@ package com.ractoc.mytasksbackend.common.configuration;
 
 import ch.vorburger.exec.ManagedProcessException;
 
-public class UnableToShutDownDatabaseException extends RuntimeException {
+class UnableToShutDownDatabaseException extends RuntimeException {
 
 	private static final long serialVersionUID = -270096547353636378L;
 
-	public UnableToShutDownDatabaseException(ManagedProcessException e) {
+	UnableToShutDownDatabaseException(ManagedProcessException e) {
 		super(e);
 	}
 

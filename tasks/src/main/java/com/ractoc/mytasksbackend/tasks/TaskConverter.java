@@ -6,19 +6,19 @@ import com.ractoc.mytasksbackend.tasks.db.tasks.my_tasks.task.TaskImpl;
 
 import java.sql.Timestamp;
 
-public class TaskConverter {
+class TaskConverter {
 
     private TaskConverter(){}
 
-    public static ListModel taskToListModel(Task task) {
+    static ListModel taskToListModel(Task task) {
         return new ListModel(task.getId(), task.getName());
     }
 
-    public static TaskModel convertToTaskModel(Task task) {
+    static TaskModel convertToTaskModel(Task task) {
         return new TaskModel(task.getId(), task.getName(), task.getDescription().orElse(null), task.getStatus());
     }
 
-    public static Task convertToTask(TaskModel taskModel) {
+    static Task convertToTask(TaskModel taskModel) {
         Task task = new TaskImpl();
         task.setId(taskModel.getId());
         task.setName(taskModel.getTitle());

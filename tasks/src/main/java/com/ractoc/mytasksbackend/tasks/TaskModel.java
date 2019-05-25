@@ -15,7 +15,7 @@ import javax.validation.constraints.Pattern;
 @NoArgsConstructor
 @ApiModel(value="Task Model", description="Contains all task fields.")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class TaskModel {
+class TaskModel {
     @ApiModelProperty(value = "The id of the task. This is a UUID.")
     @Pattern(regexp = BaseConstants.PATTERN_UUID)
     private String id;
