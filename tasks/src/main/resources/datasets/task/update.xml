@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <task id="e00f7211-1982-40c1-ac96-b04c3a44adde" name="create test" description="updated description" status="NEW" created_by="test_user" creation_date="2010-05-14 05:30:25"/>
+    <task id="f5d58333-0e06-4824-94f6-eb99995ea5dd" name="more tests" description="some nice text" status="NEW" created_by="test_user" creation_date="2010-05-14 05:30:25"/>
+</dataset>

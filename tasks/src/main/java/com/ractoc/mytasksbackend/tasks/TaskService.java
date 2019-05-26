@@ -34,15 +34,34 @@ public class TaskService {
     Task saveTask(Task task) {
         try {
             createIdForTask(task);
-            Optional<Task> existingCategory = taskManager.stream()
+            Optional<Task> existingTask = taskManager.stream()
                     .filter(Task.NAME.equalIgnoreCase(task.getName())).findAny();
-            if (existingCategory.isPresent()) {
+            if (existingTask.isPresent()) {
                 throw new DuplicateEntryException("Task with title " + task.getName() + " already exists.");
             }
             return taskManager.persist(task);
         } catch (SpeedmentException e) {
             throw new ServiceException("Unable to save task " + task.getName(), e);
         }
+    }
+
+    Task updateTask(Task task) {
+        try {
+            // test of this is a valid task to update by retrieving it
+            getTask(task.getId());
+            Optional<Task> existingTask = taskManager.stream()
+                    .filter(Task.NAME.equalIgnoreCase(task.getName()).and(Task.ID.equal(task.getId()).negate())).findAny();
+            if (existingTask.isPresent()) {
+                throw new DuplicateEntryException("Task with title " + task.getName() + " already exists.");
+            }
+            return taskManager.update(task);
+        } catch (SpeedmentException e) {
+            throw new ServiceException("Unable to save task " + task.getName(), e);
+        }
+    }
+
+    void removeTask(String uuid) {
+        taskManager.remove(getTask(uuid));
     }
 
     private void createIdForTask(Task task) {

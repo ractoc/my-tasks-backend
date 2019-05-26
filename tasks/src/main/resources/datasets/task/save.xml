@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <task name="create test" description="[NULL]" status="NEW" created_by="test_user"/>
+    <task name="more tests" description="some nice text" status="NEW" created_by="test_user"/>
+    <task name="save new task" description="[NULL]" status="NEW" created_by="test case"/>
+</dataset>
