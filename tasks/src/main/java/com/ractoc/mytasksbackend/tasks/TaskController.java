@@ -43,7 +43,7 @@ public class TaskController {
     @GetMapping(value = "", produces = APPLICATION_JSON_VALUE)
     ResponseEntity<ListResponse> getTaskList() {
         return new ResponseEntity<>(
-                new ListResponse(OK, taskHandler.getRaceList()), OK);
+                new ListResponse(OK, taskHandler.getTaskList()), OK);
     }
 
     @ApiOperation(value = "Get a specific task based on the supplied uuid", response = TaskResponse.class, produces = "application/json")
