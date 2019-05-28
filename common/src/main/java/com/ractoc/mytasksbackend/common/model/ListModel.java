@@ -12,8 +12,8 @@ import lombok.ToString;
 @ToString
 public class ListModel {
 
+    @EqualsAndHashCode.Include
     private final String id;
-    @EqualsAndHashCode.Exclude
     private final String name;
 
 }

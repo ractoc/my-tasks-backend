@@ -1,5 +1,6 @@
 package com.ractoc.mytasksbackend.tasks;
 
+import com.ractoc.mytasksbackend.common.response.DeleteResponse;
 import com.ractoc.mytasksbackend.common.response.ListResponse;
 import com.ractoc.mytasksbackend.common.service.DuplicateEntryException;
 import com.ractoc.mytasksbackend.common.service.NoSuchEntryException;
@@ -80,4 +81,41 @@ public class TaskController {
         }
     }
 
+    @ApiOperation(value = "Update an existing task", response = TaskResponse.class, consumes = "application/json", produces = "application/json")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "The task was successfully updated", response = TaskResponse.class),
+            @ApiResponse(code = 400, message = "Requested task was not found.", response = TaskResponse.class),
+            @ApiResponse(code = 400, message = "A task with this title already exists", response = TaskResponse.class),
+            @ApiResponse(code = 500, message = "Internal server error")
+    })
+    @PutMapping(value = "", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    ResponseEntity<TaskResponse> updateTask(TaskModel task) {
+        try {
+            return new ResponseEntity<>(new TaskResponse(MOVED_PERMANENTLY, taskHandler.updateTask(task)), OK);
+        } catch (NoSuchEntryException e) {
+            return new ResponseEntity<>(new TaskResponse(NOT_FOUND, e.getMessage()), BAD_REQUEST);
+        } catch (DuplicateEntryException e) {
+            return new ResponseEntity<>(new TaskResponse(CONFLICT, e.getMessage()), BAD_REQUEST);
+        } catch (ServiceException e) {
+            return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @ApiOperation(value = "Remove an existing task", response = DeleteResponse.class, consumes = "application/json", produces = "application/json")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "The task was successfully removed", response = DeleteResponse.class),
+            @ApiResponse(code = 400, message = "Requested task was not found.", response = DeleteResponse.class),
+            @ApiResponse(code = 500, message = "Internal server error")
+    })
+    @DeleteMapping(value = "", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    ResponseEntity<DeleteResponse> removeTask(String taskId) {
+        try {
+            taskHandler.removeTask(taskId);
+            return new ResponseEntity<>(new DeleteResponse(GONE), OK);
+        } catch (NoSuchEntryException e) {
+            return new ResponseEntity<>(new DeleteResponse(NOT_FOUND, e.getMessage()), BAD_REQUEST);
+        } catch (ServiceException e) {
+            return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
+        }
+    }
 }
