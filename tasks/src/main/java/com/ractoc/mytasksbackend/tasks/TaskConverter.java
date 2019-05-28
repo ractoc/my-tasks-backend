@@ -10,7 +10,7 @@ class TaskConverter {
 
     private TaskConverter(){}
 
-    static ListModel taskToListModel(Task task) {
+    static ListModel convertTaskToListModel(Task task) {
         return new ListModel(task.getId(), task.getName());
     }
 

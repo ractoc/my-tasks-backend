@@ -23,7 +23,7 @@ public class TaskHandler {
     }
 
     List<ListModel> getTaskList() {
-        return taskService.getAllTasks().map(TaskConverter::taskToListModel).collect(Collectors.toList());
+        return taskService.getAllTasks().map(TaskConverter::convertTaskToListModel).collect(Collectors.toList());
     }
 
     TaskModel getTaskById(String uuid) {
